@@ -16,10 +16,12 @@ $(document).ready(function(){
       })
   })
   $("#btn_scrape").on("click", function(){
+    console.log("scrape clicked");
     // use Axios to prepend articles to the dom
     axios.get("/scrape")
       .then(res => {
         var articles = res.data.articles
+        console.log(articles);
         if (articles) {
           articles.forEach(a => {
             $("#articles").prepend(
@@ -45,6 +47,7 @@ $(document).ready(function(){
         // Modal shows how many articles were scrapped
         $("#scrape_results_label").text(`Added ${articles.length} new Articles!`)
         $('#scrape_results_modal').modal('show'); 
+        console.log("got this far!?");
       })
       .catch(err => {
        console.log(err)

@@ -34,7 +34,8 @@ app.get("/saved", (req, res) => {
 });
 
 // Connect Mongo DB
-const url = process.env.MONGODB_URI || "mongodb://localhost/mongoosescraper";
+const url = "mongodb://localhost/mongoosescraper";
+//process.env.MONGODB_URI || 
 mongoose.connect(url);
 var db = mongoose.connection
 
@@ -47,9 +48,12 @@ db.on("open", () => {
   console.log("DB Connection successful");
 });
 
+var articleModel = require("./models/article");
+
+
 // Routes
 app.get("/scrape", (req, res) => {
-  console.log("hittin route");
+  console.log("scrapping NYT");
   // Grab HTML from NYT's website
   request("http://www.nytimes.com", function(error, response, html) {
 
@@ -76,7 +80,26 @@ app.get("/scrape", (req, res) => {
         });
       }
     });
-    console.log(results);
+    // console.log(results);
+    articleModel.find({}, (err, docs) => {
+      if (err) {
+        return res.status(200).json({ articles: docs })
+      }
+      var uniqueResults = []
+      for (i = 0; i < results.length; i++) {
+        var unique = true
+        for(j = 0; j < docs.length; j++) {
+          if (docs[j].url === results[i].url) {
+            unique = false
+            break
+          }
+        }
+        if (unique) {
+          uniqueResults.push(results[i])
+        }
+      }
+      return res.status(200).json({ articles: uniqueResults })
+    })
   });
 });
 
