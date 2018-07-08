@@ -1,0 +1,64 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Mongo Scraper</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/saved">Saved Articles</a></li>
+    </ul>
+  <button id="btn_scrape" type="button" class="btn btn-danger">Scrape New Articles!</button>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <div class="overlay">
+  </div>
+  <div class="background-image">
+  </div>
+  <div class="caption">
+    <h1>Mongo Scraper</h1>
+    <p>New York Times Edition</p>
+  </div>
+</div>
+
+<div id="articles">
+</div>
+
+<div class="modal fade" id="scrape_results_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="scrape_results_label"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="container">
+          <button type="button" class="btn btn-secondary modal1" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/index.js"></script>
