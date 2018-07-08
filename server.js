@@ -34,8 +34,7 @@ app.get("/saved", (req, res) => {
 });
 
 // Connect Mongo DB
-const url = "mongodb://localhost/mongoosescraper";
-//process.env.MONGODB_URI || 
+const url = process.env.MONGODB_URI || "mongodb://localhost/mongoosescraper";
 mongoose.connect(url);
 var db = mongoose.connection
 
